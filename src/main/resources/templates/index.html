@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Koty vs Psy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body th:style="${'color: white; font-size: 2em; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; height: 100vh; background-color: ' + color}">
+<div style="background-color: inherit; display: flex; align-items: center; justify-content: center; height: 100%;">
+
+    <div style="display: flex; width: 100%; justify-content: space-around;">
+        <div id="cats" th:attr="data-cats=${cats}" style="cursor: pointer; display: flex; flex-direction: column;">
+            <img style="width: 25vw; height: 25vh" th:src="@{images/cat.jpg}"/>
+            <div style="text-align: center;"></div>
+        </div>
+        <div id="dogs" th:attr="data-dogs=${dogs}" style="cursor: pointer; display: flex; flex-direction: column;">
+            <img style="width: 25vw; height: 25vh" th:src="@{images/dog.jpg}"/>
+            <div style="text-align: center;"></div>
+        </div>
+    </div>
+</div>
+<script>
+
+    let cats = parseInt(document.querySelector("#cats").getAttribute("data-cats"));
+    let dogs = parseInt(document.querySelector("#dogs").getAttribute("data-dogs"));
+
+    function update() {
+        document.querySelector("#cats div").innerHTML = `Głosy na koty: ${cats}`
+        document.querySelector("#dogs div").innerHTML = `Głosy na psy:${dogs}`
+    }
+
+    update();
+
+    document.querySelector("#cats").addEventListener("click", () => {
+       cats++;
+       update();
+       fetch("cats", {
+           method: "POST"
+       });
+    })
+
+    document.querySelector("#dogs").addEventListener("click", () => {
+        dogs++;
+        update();
+        fetch("dogs", {
+            method: "POST"
+        });
+    })
+
+
+</script>
+<footer style="position:fixed; bottom: 0; font-size: 0.5em" th:text="${timestamp}"></footer>
+</body>
+</html>

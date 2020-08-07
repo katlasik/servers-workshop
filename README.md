@@ -58,10 +58,17 @@ docker-compose up --force-recreate nginx
 ```bash
 docker-compose up --force-recreate redis
 ```
-Uruchom ponownie logi aplikacji. Sprawdź czy aplikacja poprawnie połączyła się z `Redisem` w logu. 
+Uruchom ponownie logi aplikacji. Sprawdź czy aplikacja poprawnie połączyła się z `Redisem` w logu.
 
-18. Uruchom `Wildfly` poprzez skrypt `/bin/standalone./sh`. Możesz skorzystać z parametru
+18. Stwórz obraz dockera dla aplikacji oraz uruchom ją przy pomocy poleceń: 
+
+```basg
+docker build --tag counter .
+docker run -d --name counter -p 8888:8888 counter:latest
+```
+
+19. Uruchom `Wildfly` poprzez skrypt `/bin/standalone./sh`. Możesz skorzystać z parametru
 `-Djboss.socket.binding.port-offset=1` aby zmienić port. Zainstaluj aplikację poprzez skopiowanie
 pliku `war` do `standalone/deployments`.
 
-19. Dodaj nowego użytkownika administracyjnego poprzez skrypt `add-user.sh` i zaloguj się do konsoli administracyjnej.
+20. Dodaj nowego użytkownika administracyjnego poprzez skrypt `add-user.sh` i zaloguj się do konsoli administracyjnej.

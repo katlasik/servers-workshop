@@ -60,3 +60,8 @@ docker-compose up --force-recreate redis
 ```
 Uruchom ponownie logi aplikacji. Sprawdź czy aplikacja poprawnie połączyła się z `Redisem` w logu. 
 
+18. Uruchom `Wildfly` poprzez skrypt `/bin/standalone.sh`. Możesz skorzystać z parametru
+`-Djboss.socket.binding.port-offset=1` aby zmienić port. Zainstaluj aplikację poprzez skopiowanie
+pliku `war` do `standalone/deployments`.
+
+19. Dodaj nowego użytkownika administracyjnego poprzez skrypt `add-user.sh` i zaloguj się do konsoli administracyjnej.
